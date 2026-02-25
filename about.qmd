@@ -1,0 +1,90 @@
+---
+title: "Curriculum Vitae"
+page-layout: full
+toc: false
+format:
+  html:
+    theme: cosmo
+    css: cv-styles.css
+    page-layout: full
+---
+
+:::::::::::::::::: cv-container
+# Melina Grabbe
+
+**Master's Student in Public Health**\
+Bielefeld University
+
+------------------------------------------------------------------------
+
+## Education
+
+::::: cv-item
+::: cv-left
+**Master of Science Public** \
+Bielefeld University, Germany
+:::
+
+::: cv-right
+10/2024 – Present
+:::
+:::::
+
+::::: cv-item
+::: cv-left
+**Bsc Health Communication**\
+Bielefeld University, Germany
+:::
+
+::: cv-right
+10/2021 – 09/2024
+:::
+:::::
+
+------------------------------------------------------------------------
+
+## Professional Experience
+
+::::: cv-item
+::: cv-left
+**Research Assistent**\
+Department of Epidemiology and International Public Health (AG3), Bielefeld University, Germany
+
+Tasks:
+
+-   Literature Review
+
+-   Tutor of the module measuring and evaluating health information
+:::
+
+::: cv-right
+04/2024 – present
+:::
+:::::
+
+::::: cv-item
+::: cv-left
+**Internship**\
+Herz- und Diabetes Zentrum Bad Oeynhausen, Institut für Angewandte Telemedizin
+:::
+
+::: cv-right
+02/2014 – 04/2024
+:::
+:::::
+
+------------------------------------------------------------------------
+
+## Skills
+
+**Software**: RStudio, Microsoft Office, Zotero, Endnote, Canva\
+**Languages**: German (native), English (fluent), Spanish (basic), French (basic)
+
+------------------------------------------------------------------------
+
+## Presentations
+
+**What We Mean When We Speak Of Othering** – workshop: "States' Manipulations of Belonging and Territoriality: Health Consequences and Activists' Intervention Strategies" at the Center of Interdiciplinary Research (ZiF), Bielefeld, Germany, 9. -11.09. 2024
+
+------------------------------------------------------------------------
+

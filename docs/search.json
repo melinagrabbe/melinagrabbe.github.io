@@ -1,0 +1,93 @@
+[
+  {
+    "objectID": "help.html",
+    "href": "help.html",
+    "title": "Help Page",
+    "section": "",
+    "text": "For detailed information on how to create a Quarto website, please visit Quarto’s Help Center.\n\nProject Files\nA Quarto website has:\n\n_quarto.yml → controls the entire website\n.qmd files → individual pages\nimages folder → store images\ndocs folder → Github pages access (do not touch the docs folder)\nstyles.css → styling specific pages\n.gitignore and .Rhistory → not too important, I would not touch\n.RData → data storage\nREADME.md → general instructions on how to publish website in case you need help later\n\nIf something changes across the whole website, edit _quarto.yml. If something changes on one page only, edit that page’s YAML.\n\n\nRender Website\nIf you want to preview your website locally, you can either\n\n\nclick render on the top left of RStudio\n\nor\n\ngo to terminal, and type quarto preview\n\n\n\nYAML\nwebsite:\n  title: \"My Portfolio\" # name your website\n  navbar: # navigation between pages\n    left: # chose where you want your nav bar to be located\n      - text: \"Home\" # the text diplayed\n        href: index.qmd # the name of the file linked to the text\n      - text: \"About Me\"\n        menu:  # add nested pages\n          - text: \"My Resume\"\n            href: about.qmd\n          - text: \"Political & Environmental Activism\"\n            href: active.qmd\nYAML indentation MUST use spaces, not tabs. Indentation defines hierarchy. A misplaced space will cause errors for your site.\nUseful advanced options:\n\ndraft: true → hides page from rendering\nfreeze: auto → avoids re-running heavy computations\npage-layout: full → removes side margins\npage-layout: article → default blog style\n\n\n\nStyles\nTo create the CSS File, click File → New File → Text File, and name the file however you like but make sure it ends with styles.css like the one in Owen’s template.\nTo link the styles.css file to a page of your choice, go to the yml code at the top of qmd file and paste the name of your css file\nformat:\n  html:\n    css: cv-styles.css\nTo learn how the css code works you can visit this youtube link:\nCustomize appearance with CSS/SCSS\nor visit Quarto’s Website\n\n\nImages\nAlways store images in the images folder.\nTo add an image, the easiest way is to first make sure you are in visual mode, then click insert, then click Figure/Image and chose the file on your computer.\n\n\nPublish Website\nYou will need an access token in order to link and publish your Quarto website on Github.\nIn Github, click Profile picture → Settings → Developer settings → Personal access tokens → Fine-grained tokens → generate new token\nWhen creating the token,\n\nyou must click Repository access, then choose “Only selected repositories”, and select your website repository\nclick Permissions, then click “Contents: Read and write” and “Metadata: Read-only”\nclick generate token\n!!Copy the token immediately!! save the token somewhere, once you leave the page, you cannot access the token again.\n\nGo back to RStudio and install the package gitcreds.\nOnce installed, load the package into your library, and open your R console. Type the following into your console\n\ngitcreds::gitcreds_set()\n\nthen paste the access token into your console and press enter your github should be linked now\nTo publish your website, open your terminal and type each line of code below and press enter after each command separately:\n\ngit init\nquarto render\ngit remote add origin https://github.com/USERNAME/REPOSITORY.git\ngit add -A\ngit commit -m “Update website”\ngit push\n\nIf you check your repository on Github, you should see the updated pages, then click the link on the right and you should be able to see your published website\nIf you want to update your website, then you only need to execute the following commands in your terminal again\n\nquarto render\ngit add -A\ngit commit -m “Update website”\ngit push"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Curriculum Vitae",
+    "section": "",
+    "text": "Master’s Student in Public Health\nBielefeld University\n\n\n\n\n\nMaster of Science Public\nBielefeld University, Germany\n\n\n10/2024 – Present\n\n\n\n\nBsc Health Communication\nBielefeld University, Germany\n\n\n10/2021 – 09/2024\n\n\n\n\n\n\n\n\nResearch Assistent\nDepartment of Epidemiology and International Public Health (AG3), Bielefeld University, Germany\nTasks:\n\nLiterature Review\nTutor of the module measuring and evaluating health information\n\n\n\n04/2024 – present\n\n\n\n\nInternship\nHerz- und Diabetes Zentrum Bad Oeynhausen, Institut für Angewandte Telemedizin\n\n\n02/2014 – 04/2024\n\n\n\n\n\n\nSoftware: RStudio, Microsoft Office, Zotero, Endnote, Canva\nLanguages: German (native), English (fluent), Spanish (basic), French (basic)\n\n\n\n\nWhat We Mean When We Speak Of Othering – workshop: “States’ Manipulations of Belonging and Territoriality: Health Consequences and Activists’ Intervention Strategies” at the Center of Interdiciplinary Research (ZiF), Bielefeld, Germany, 9. -11.09. 2024"
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "Curriculum Vitae",
+    "section": "",
+    "text": "Master of Science Public\nBielefeld University, Germany\n\n\n10/2024 – Present\n\n\n\n\nBsc Health Communication\nBielefeld University, Germany\n\n\n10/2021 – 09/2024"
+  },
+  {
+    "objectID": "about.html#professional-experience",
+    "href": "about.html#professional-experience",
+    "title": "Curriculum Vitae",
+    "section": "",
+    "text": "Research Assistent\nDepartment of Epidemiology and International Public Health (AG3), Bielefeld University, Germany\nTasks:\n\nLiterature Review\nTutor of the module measuring and evaluating health information\n\n\n\n04/2024 – present\n\n\n\n\nInternship\nHerz- und Diabetes Zentrum Bad Oeynhausen, Institut für Angewandte Telemedizin\n\n\n02/2014 – 04/2024"
+  },
+  {
+    "objectID": "about.html#skills",
+    "href": "about.html#skills",
+    "title": "Curriculum Vitae",
+    "section": "",
+    "text": "Software: RStudio, Microsoft Office, Zotero, Endnote, Canva\nLanguages: German (native), English (fluent), Spanish (basic), French (basic)"
+  },
+  {
+    "objectID": "about.html#presentations",
+    "href": "about.html#presentations",
+    "title": "Curriculum Vitae",
+    "section": "",
+    "text": "What We Mean When We Speak Of Othering – workshop: “States’ Manipulations of Belonging and Territoriality: Health Consequences and Activists’ Intervention Strategies” at the Center of Interdiciplinary Research (ZiF), Bielefeld, Germany, 9. -11.09. 2024"
+  },
+  {
+    "objectID": "proj1.html",
+    "href": "proj1.html",
+    "title": "Plot Examples in R",
+    "section": "",
+    "text": "What is a plot?\nA plot is a visualization of data. There are several types of plots that can be used to visualize data, including: boxplots, histograms, scatter plots, and line plots. Plots can be used to identify patterns, trends, and outliers in data.\n\n\n\n\n\n\n\n\n\n\nggplot(data = data, \n       aes(x = temperature)) +\n  geom_histogram(binwidth = 3, col = \"cornflowerblue\", fill = \"coral\")\n\n\n\n\n\n\n\n\n\ndata %&gt;% \n  filter(!(weekday %in% c(\"Sat\", \"Sun\")),\n         holiday == F) %&gt;% \n  ggplot(aes(x = temperature, y = cyclists)) +\n  geom_jitter(aes(col = weekday, alpha = 0.4, size = 0.2)) +\n  xlab(\"Tempeeeeeeeeeeeeeeeerature\")+\n  ylab(\"Cyclists(z.B. Annika)\") + \n  theme_minimal()"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to My Personal Website",
+    "section": "",
+    "text": "Hello, my name Marlon and I am 3 years old. I am a black and white cat who likes to eat and sleep."
+  },
+  {
+    "objectID": "index.html#about-me",
+    "href": "index.html#about-me",
+    "title": "Welcome to My Personal Website",
+    "section": "",
+    "text": "Hello, my name Marlon and I am 3 years old. I am a black and white cat who likes to eat and sleep."
+  },
+  {
+    "objectID": "index.html#dive-into-my-r-projects",
+    "href": "index.html#dive-into-my-r-projects",
+    "title": "Welcome to My Personal Website",
+    "section": "Dive into My R Projects",
+    "text": "Dive into My R Projects\nMy research interests are primarily:\n\nBirds\nMice\n\nHere you can see me busy working on a paper:"
+  },
+  {
+    "objectID": "index.html#help",
+    "href": "index.html#help",
+    "title": "Welcome to My Personal Website",
+    "section": "Help",
+    "text": "Help\nIf you’re part of the R course, you can find additional tips and resources to help you create your own personalized website."
+  },
+  {
+    "objectID": "index.html#connect-with-me",
+    "href": "index.html#connect-with-me",
+    "title": "Welcome to My Personal Website",
+    "section": "Connect with Me",
+    "text": "Connect with Me\nInterested in collaborating on a project or discussing data science topics? Connect with me via email at owen.callahan@uni-bielefeld.de"
+  },
+  {
+    "objectID": "active.html",
+    "href": "active.html",
+    "title": "Political and Environmental Activism",
+    "section": "",
+    "text": "Climate change is one the most important issues to be discussed at the moment because it influences all aspects of our lives, and I think that everyone can make a difference in this matter. I would like to make a difference by advocating for policies that support sustainability and environmental justice.\n\n\nMy Journey\nI was only twelve years old when I started my journey as an activist. The first time I heard about global warming, I became fascinated with its science, which made me write extensively about it in school.\nOne of my first initiatives was to build a floating windmill, which I submitted to a competition at the local university. These experiences propelled me to continue my advocacy in college.\n\n\n\nVirginia Tech Climate Action Committee\nWhen I was a student at Virginia PolyTech University, I was part of the Climate Action Committee, where I had the opportunity to work together with the university administration, faculty, and students to develop and implement strategies to decrease the greenhouse gas emissions of the university. This experience has helped me develop skills in policy formulation and team problem-solving, while also teaching me the importance of academic institutions in addressing the issue of climate change.\n\n\n\nRepresenting at COP25\nBeing a student delegate at COP25 was a turning point in my activism. Attending the United Nations Climate Change Conference opened my eyes to the global reality of the climate crisis and the various approaches that nations are taking. Networking with representatives, experts, and other activists from other countries was both inspiring and enlightening. This reinforced my belief in the power of global cooperation and the urgent need for a united response to the climate crisis.\n\n\n\nEnvironmental Psychology and Hardt Hyperloop\nContinuing my education, I received a master’s degree in Environmental Psychology, where I utilized my skills and knowledge to further comprehend the human side of environmental issues. As a UX Researcher at Hardt Hyperloop, I researched views on sustainable transportation. This role helped me build my skills in research and comprehension of human perception.\n\n\nThe Scientist Rebellion\nThe Scientist Rebellion is a group of scientists who are fighting for drastic changes that can solve the climate crisis. By taking part in peaceful protests and rallies, we hoped that we could force the government and corporations to take drastic measures to address climate change. This experience has taught me to value civil disobedience as a tool for social change and the importance of scientists in the climate struggle.\n\n\nExpanding Activism\nMy activism has also led me beyond the issue of climate change and into the Free Palestine movement. The link between environmental justice and human rights has encouraged me to extend my activism. The Palestine movement has widened my understanding of global justice by showing me that true sustainability is not possible without social equality and human dignity. This broader perspective has reminded me that the struggle for a just and sustainable world is complex and interconnected.\n\n\nReflecting on My Journey\nMy involvement in all these different aspects of climate activism has had a huge impact on who I am today. Every single event has given me important lessons about activism and the climate crisis. Establishing the VTCJ Foundation taught me the power of community, while attending COP25 has given me a global perspective, and Scientist Rebellion has shown me the power of taking direct action.\nGoing forward, I am more committed than ever to continue working with organizations that are fighting climate change. I hope to use my experiences to motivate and inspire others."
+  }
+]

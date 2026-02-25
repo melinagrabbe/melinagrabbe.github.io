@@ -1,0 +1,46 @@
+project:
+  type: website
+  output-dir: docs
+  
+website:
+  title: "My Portfolio"
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "About Me"
+        menu: 
+          - text: "My Resume"
+            href: about.qmd
+          - text: "Political & Environmental Activism"
+            href: active.qmd
+      - text: "My Projects" 
+        menu: 
+        - text: "Bootstraping Example"
+          href: proj1.qmd          
+      - text: "Help"
+        href: help.qmd
+    sidebar: false
+    tools:
+      - icon: github
+        href: https://github.com/0-cal/my-portfolio
+      - icon: linkedin
+#       href: enter link
+  page-footer:
+    right: "Built with [Quarto](https://quarto.org/)"
+    left: "&copy; Copyright 2026, Owen Callahan"
+
+format:
+  html:
+#    backgroundcolor: "blue"
+#    fontcolor: "green"
+#    linkcolor: "darkgreen"
+#    mainfont: "sarif"
+#    max-width: (width of the main text area of the pages)
+#    fontsize: (base font size for website)
+#    linestretch: (distance between lines of text)
+    theme: cosmo
+    toc: true
+
+editor: source
+

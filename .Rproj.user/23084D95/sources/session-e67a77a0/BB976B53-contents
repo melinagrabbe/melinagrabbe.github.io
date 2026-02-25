@@ -1,0 +1,125 @@
+---
+title: "Curriculum Vitae"
+page-layout: full
+toc: false
+format:
+  html:
+    theme: cosmo
+    css: cv-styles.css
+    page-layout: full
+---
+
+::: cv-container
+# Owen Callahan
+
+**PhD in Applied Statistics**\
+Bielefeld University
+
+------------------------------------------------------------------------
+
+## Education
+
+::: cv-item
+::: cv-left
+**PhD Applied Statistics**\
+Bielefeld University, Germany
+:::
+
+::: cv-right
+10/2024 – Present
+:::
+:::
+
+::: cv-item
+::: cv-left
+**MSc Environmental Psychology**\
+University of Groningen, Netherlands
+:::
+
+::: cv-right
+09/2021 – 02/2023
+:::
+:::
+
+::: cv-item
+::: cv-left
+**BS Psychology (Minor: Statistics)**\
+Virginia Polytechnic Institute and State University, USA
+:::
+
+::: cv-right
+09/2017 – 06/2021
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Professional Experience
+
+::: cv-item
+::: cv-left
+**UX Researcher**\
+Hardt Hyperloop, Groningen, Netherlands
+:::
+
+::: cv-right
+04/2022 – 11/2022
+:::
+:::
+
+::: cv-item
+::: cv-left
+**Student Researcher**\
+Center for Applied Behavioral Systems, VA, USA
+:::
+
+::: cv-right
+01/2018 – 05/2021
+:::
+:::
+
+::: cv-item
+::: cv-left
+**Private Statistics Tutor**\
+Self-employed, Groningen, Netherlands
+:::
+
+::: cv-right
+09/2021 – Present
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Skills
+
+**Software:** RStudio, NetLogo, SPSS, Atlas.ti, Microsoft Office
+
+------------------------------------------------------------------------
+
+## Certifications
+
+**R Programming**\
+Johns Hopkins Bloomberg School of Public Health (2023–2024)
+
+**Mathematical Biostatistics**\
+Johns Hopkins Bloomberg School of Public Health (2023)
+
+------------------------------------------------------------------------
+
+## Awards
+
+-   Summa Cum Laude\
+-   Dean's List\
+-   Beyond Boundaries Scholar
+
+------------------------------------------------------------------------
+
+## Conferences
+
+-   Social Simulation Conference (2025, Delft)\
+-   UniC Summit (2021, Quebec)\
+-   COP25 United Nations Climate Change Conference (2019, Madrid)\
+-   Mid-Atlantic Undergraduate Research Conference (2019)\
+-   North Carolina Applied Behavioral Association (2019)
+:::

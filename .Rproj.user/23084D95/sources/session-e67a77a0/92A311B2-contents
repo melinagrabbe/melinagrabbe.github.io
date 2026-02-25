@@ -1,0 +1,188 @@
+---
+title: "Bootstrapping Examples in R"
+format: html
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+What is Bootstrapping?
+
+Bootstrapping is a procedure for estimating the distribution of an
+estimator by resampling (often with replacement) from the data or from a
+fitted model.
+
+It assigns measures of accuracy (bias, variance, confidence intervals,
+prediction error) to sample estimates and allows estimation of the
+sampling distribution of almost any statistic using simulation.
+
+I use rnorm function (randomize + normal distribution) to generate a
+practice set of data.
+
+Fit model
+
+```{r}
+set.seed(123)
+
+x <- rnorm(50, mean = 10, sd = 2)
+n <- length(x)
+
+mu_hat <- mean(x)
+sd_hat <- sd(x)
+```
+
+Run bootstrap
+
+```{r}
+B <- 1000
+mu_boot <- numeric(B)
+
+for (b in 1:B) {
+  x_star <- rnorm(n, mean = mu_hat, sd = sd_hat)
+  mu_boot[b] <- mean(x_star)
+}
+```
+
+results
+
+```{r}
+boot_mean <- mean(mu_boot)
+boot_se <- sd(mu_boot)
+ci <- quantile(mu_boot, c(0.025, 0.975))
+
+boot_mean
+boot_se
+ci
+```
+
+## Example for linear regression
+
+```{r}
+set.seed(123)
+
+n <- 100
+x <- runif(n, 0, 10)
+y <- 5 + 2 * x + rnorm(n, 0, 2)
+```
+
+Fit linear model
+
+```{r}
+fit <- lm(y ~ x)
+summary(fit)
+```
+
+Extract parameters
+
+```{r}
+beta_hat <- coef(fit) 
+sigma_hat <- summary(fit)$sigma
+```
+
+Bootstrap
+
+```{r}
+B <- 1000
+beta_boot <- matrix(NA, nrow = B, ncol = length(beta_hat))
+
+for (b in 1:B) {
+  y_star <- beta_hat[1] + beta_hat[2] * x + rnorm(n, 0, sigma_hat)
+  fit_star <- lm(y_star ~ x)
+  beta_boot[b, ] <- coef(fit_star)
+}
+```
+
+Results
+
+```{r}
+boot_means <- colMeans(beta_boot)
+boot_ses <- apply(beta_boot, 2, sd)
+boot_ci <- apply(beta_boot, 2, quantile, probs = c(0.025, 0.975))
+
+boot_means
+boot_ses
+boot_ci
+```
+
+## Example for logistic regression
+
+Generate data using runif (randomize uniform distribution)
+
+```{r}
+set.seed(123)
+
+n <- 200
+x <- runif(n, 0, 10)
+
+beta0 <- -2
+beta1 <- 0.5
+
+p <- 1 / (1 + exp(-(beta0 + beta1 * x)))
+y <- rbinom(n, 1, p)
+
+data <- data.frame(y = y, x = x)
+
+fit <- glm(y ~ x,
+           family = binomial(link = "logit"),
+           data = data)
+
+summary(fit)
+```
+
+Extract estimated parameters
+
+```{r}
+beta_hat <- coef(fit)
+
+B <- 1000
+beta_boot <- matrix(NA, nrow = B, ncol = length(beta_hat))
+
+
+for (b in 1:B) {
+  p_hat <- 1 / (1 + exp(-(beta_hat[1] + beta_hat[2] * x)))
+  y_star <- rbinom(n, 1, p_hat)
+  
+  fit_star <- glm(y_star ~ x,
+                  family = binomial(link = "logit"))
+  
+  beta_boot[b, ] <- coef(fit_star)
+}
+
+colnames(beta_boot) <- names(beta_hat)
+```
+
+Results
+
+```{r}
+boot_means <- colMeans(beta_boot)
+boot_ses <- apply(beta_boot, 2, sd)
+boot_ci <- apply(beta_boot, 2, quantile, probs = c(0.025, 0.975))
+
+results <- data.frame(
+  Estimate = beta_hat,
+  BootMean = boot_means,
+  BootSE = boot_ses,
+  CI_lower = boot_ci[1, ],
+  CI_upper = boot_ci[2, ]
+)
+
+print(results)
+```
+
+lets graph both intercept and slope using histogram
+
+```{r}
+par(mfrow = c(1, 2))
+
+hist(beta_boot[,1],
+     main = "Bootstrap Intercept",
+     xlab = "beta0*",
+     breaks = 30)
+abline(v = beta_hat[1], col = "red", lwd = 2)
+
+hist(beta_boot[,2],
+     main = "Bootstrap Slope",
+     xlab = "beta1*",
+     breaks = 30)
+abline(v = beta_hat[2], col = "red", lwd = 2)
+```

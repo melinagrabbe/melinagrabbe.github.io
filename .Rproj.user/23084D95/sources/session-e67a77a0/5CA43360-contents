@@ -1,0 +1,188 @@
+setwd("~/Desktop/Wintersemester 2526/R Blockseminar")
+
+library(tidyverse)
+library(ggplot2)
+
+
+
+# loading data 
+bikedata <- read_csv("bikedata.csv")
+
+### Day 2: Preparing and plotting 
+
+plot <- ggplot(data = data,
+       aes(x = wind_speed, y = temperature)) +
+  geom_point()
+
+# Exercises: First Steps 
+ggplot()
+
+#3 
+set.seed(999)
+bikedata_subset <- data %>% sample_n(5000)
+
+plot1 <- ggplot(data = bikedata_subset,
+                aes(x = wind_speed, y = temperature)) + 
+  geom_point()
+
+plot1
+str(plot1)
+
+# 2 Aesthetics
+plot2 <- ggplot(data = bikedata_subset, 
+       aes(x = wind_speed, y = temperature)) +
+  geom_point(col = "green", shape = 17, fill = "yellow")
+
+plot3 <- ggplot(data = bikedata_subset,
+               aes(x = wind_speed, y = temperature)) +
+  geom_point(col = "purple", shape = 4, fill = "orange", alpha = 0.1)
+plot3
+
+plot4 <- ggplot(data = bikedata_subset) +
+  aes(x = wind_speed, 
+      y = temperature, 
+      color = beethoven_festival) +
+  geom_point()
+
+plot4
+
+plot5 <- ggplot(data = bikedata_subset) +
+  aes(x = wind_speed, 
+      y = temperature, 
+      color = beethoven_festival,
+      shape = semester_break) +
+  geom_point()
+
+plot5
+
+
+plot_rebuild <- ggplot(data = bikedata_subset[bikedata_subset$weekday == "Mon",]) +
+  aes(x = wind_speed, y = temperature) +
+  geom_point(color = "blue", fill = "tomato", shape = 22)
+
+plot_rebuild
+
+# geometric functions 
+
+# 3.1 
+ggplot(bikedata_subset, 
+       aes(x = factor(beethoven_festival), 
+           fill = factor(semester_break))) +
+  geom_bar(position = "stack") +
+  labs(x = "Beethoven Festival",
+       fill = "Semester Break") 
+
+ggplot(bikedata_subset, 
+       aes(x = beethoven_festival, 
+           fill = semester_break)) +
+  geom_bar(position = "dodge")
+
+# Scatterplot
+ggplot(data,
+       aes(x = diesel_price, y = cyclists)) + 
+  geom_jitter() +
+  geom_smooth(se = T)
+
+
+# Histogram and kernel density estimates ----------------------------------
+ggplot(data = data, 
+       aes(x = temperature)) +
+  geom_histogram(binwidth = 3, col = "cornflowerblue", fill = "coral")
+
+ggplot(data = data,
+       aes(x =cyclists)) +
+  geom_density(fill = "lightblue")
+
+#16
+ggplot(data = data, 
+       aes(x = rhine_water_level))
+
+#17
+
+ggplot(data = data, 
+       aes(x = rhine_water_level,
+           fill = semester_break)) +
+  geom_histogram(position = "stack", alpha = 0.4) +
+  facet_grid()
+  
+#18 
+
+ggplot(data = data, 
+       aes(x = diesel_price, 
+           fill = semester_break)) +
+  geom_boxplot()
+
+#19
+ggplot(data = data, 
+       aes(x = diesel_price, 
+           fill = semester_break)) +
+  geom_boxplot() 
+
+### Data Management 
+
+bikedata %>% 
+  filter(temperature > 20) %>% 
+  select(cyclists, temperature, weekday) %>% 
+  arrange(desc(cyclists))
+
+# Exercises
+bikedata %>% 
+  filter(temperature > 15) %>% 
+  select(cyclists, temperature, weekday)
+
+bikedata <- bikedata %>% mutate(season = case_when(
+  temperature < 10 ~ "Cold", 
+  temperature %in%  10:20 ~ "Mild", 
+  TRUE ~ "Warm"
+))
+table(bikedata$season)
+
+bikedata %>% 
+  group_by(season) %>%
+  summarise(
+    avrg_cyclist = mean(cyclists),
+    max_cyclist = max(cyclists)) %>% 
+  arrange(desc(avrg_cyclist))
+
+bikedata %>% 
+  mutate (is_weekend = weekday %in%  c("Sat", "Sun")) %>% 
+  group_by(is_weekend) %>% 
+  summarise (avrg_cyclist = mean(cyclists), n=n(), .groups = "drop")
+
+bikedata <- read_csv("bikedata.csv") %>%
+  mutate(timestamp = ymd_hms(timestamp, truncated = 3))
+    
+bikedata %>% 
+  mutate (hour = hour(timestamp)) %>% 
+  group_by(hour) %>% 
+  summarise(avrg_cyclist = mean(cyclists)) %>% 
+  slice_max(avrg_cyclist)
+
+bikedata %>% 
+  filter(!(weekday %in% c("Sat", "Sun")),
+         holiday == F) %>% 
+  ggplot(aes(x = temperature, y = cyclists)) +
+  geom_jitter(aes(col = weekday, alpha = 0.4, size = 0.2)) +
+  xlab("Tempeeeeeeeeeeeeeeeerature")+
+  ylab("Cyclists(z.B. Annika)") + 
+  theme_minimal()
+
+bikedata_long <-  bikedata %>% 
+  filter(!(weekday %in% c("Sat", "Sun")),
+         holiday == F) %>%
+  group_by(weekday) %>% 
+  summarise(avrg_cyclist = mean(cyclists),
+            avrg_temp = mean(temperature))
+
+bikedata_long <- bikedata_long %>% pivot_longer(
+  cols = c(avrg_cyclist, avrg_temp),
+  names_to = "metric",
+  values_to = "value") %>% 
+  ggplot((aes(x = weekday, y = value, fill = metric))) +
+  geom_col() + 
+  facet_wrap( ~ metric, scales = "free_y")
+
+bikedata_long  
+
+  
+

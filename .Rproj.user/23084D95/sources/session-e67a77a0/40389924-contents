@@ -1,0 +1,37 @@
+---
+title: "Welcome to My Personal Website"
+subtitle: "Melina Grabbe | BSc Health Communication"
+output: html_document
+toc: false
+
+image: images/7ADDB816-374D-4853-8507-8DE3DB94E602.jpeg
+about: 
+ template: marquee
+ image-shape: rounded
+---
+
+## About Me
+
+Hello, my name Marlon and I am 3 years old. I am a black and white cat who likes to eat and sleep.
+
+![](images/5E5E3E05-7838-404D-BF98-4E021A7E2E40.jpeg)
+
+## Dive into My R Projects
+
+My research interests are primarily:
+
+-   Birds
+
+-   Mice
+
+Here you can see me busy working on a paper:
+
+![](images/IMG_4497.jpeg)
+
+## Help
+
+If you're part of the R course, you can find additional tips and resources to help you create your own personalized website.
+
+## Connect with Me
+
+Interested in collaborating on a project or discussing data science topics? Connect with me via email at owen.callahan\@uni-bielefeld.de

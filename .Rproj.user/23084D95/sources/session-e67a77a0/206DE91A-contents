@@ -1,0 +1,55 @@
+---
+title: "Plot Examples in R"
+format: html
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+What is a plot?
+
+A plot is a visualization of data. There are several types of plots that can be used to visualize data, including: boxplots, histograms, scatter plots, and line plots. Plots can be used to identify patterns, trends, and outliers in data.
+
+
+
+```{r}
+#| message: false
+#| include: false
+library(tidyverse)
+library(ggplot2)
+data <- read.csv("bikedata.csv")
+```
+
+```{r}
+#| echo: false
+ggplot(data = data, 
+       aes(x = diesel_price, 
+           fill = semester_break)) +
+  geom_boxplot()
+```
+
+
+```{r}
+ggplot(data = data, 
+       aes(x = temperature)) +
+  geom_histogram(binwidth = 3, col = "cornflowerblue", fill = "coral")
+```
+
+```{r}
+data %>% 
+  filter(!(weekday %in% c("Sat", "Sun")),
+         holiday == F) %>% 
+  ggplot(aes(x = temperature, y = cyclists)) +
+  geom_jitter(aes(col = weekday, alpha = 0.4, size = 0.2)) +
+  xlab("Tempeeeeeeeeeeeeeeeerature")+
+  ylab("Cyclists(z.B. Annika)") + 
+  theme_minimal()
+```
+
+
+
+
+
+
+
+

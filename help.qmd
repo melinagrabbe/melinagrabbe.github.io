@@ -1,0 +1,139 @@
+---
+title: "Help Page"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-copy: true
+    code-tools: true
+    code-fold: false
+    smooth-scroll: true
+about: 
+ template: marquee
+---
+
+For detailed information on how to create a Quarto website, please visit [Quarto's Help Center](https://quarto.org/docs/websites/).
+
+# Project Files
+
+A Quarto website has:
+
+-   `_quarto.yml` → controls the entire website
+-   `.qmd` files → individual pages
+-   `images` folder → store images
+-   `docs` folder → Github pages access (do not touch the docs folder)
+-   `styles.css` → styling specific pages
+-   `.gitignore` and `.Rhistory` → not too important, I would not touch
+-   `.RData` → data storage
+-   `README.md` → general instructions on how to publish website in case you need help later
+
+If something changes across the whole website, edit `_quarto.yml`. If something changes on one page only, edit that page’s YAML.
+
+# Render Website
+
+If you want to preview your website locally, you can either\
+
+-   click render on the top left of RStudio
+
+or
+
+-   go to terminal, and type `quarto preview`
+
+# YAML
+
+``` r
+website:
+  title: "My Portfolio" # name your website
+  navbar: # navigation between pages
+    left: # chose where you want your nav bar to be located
+      - text: "Home" # the text diplayed
+        href: index.qmd # the name of the file linked to the text
+      - text: "About Me"
+        menu:  # add nested pages
+          - text: "My Resume"
+            href: about.qmd
+          - text: "Political & Environmental Activism"
+            href: active.qmd
+```
+
+YAML indentation MUST use spaces, not tabs. Indentation defines hierarchy. A misplaced space will cause errors for your site.
+
+Useful advanced options:
+
+-   `draft: true` → hides page from rendering
+-   `freeze: auto` → avoids re-running heavy computations
+-   `page-layout: full` → removes side margins
+-   `page-layout: article` → default blog style
+
+# Styles
+
+To create the CSS File, click File → New File → Text File, and name the file however you like but make sure it ends with styles.css like the one in Owen's template.
+
+To link the styles.css file to a page of your choice, go to the yml code at the top of qmd file and paste the name of your css file
+
+``` r
+format:
+  html:
+    css: cv-styles.css
+```
+
+To learn how the css code works you can visit this youtube link:
+
+[Customize appearance with CSS/SCSS](https://www.youtube.com/watch?v=pAN2Hiq0XGs)
+
+or visit [Quarto's Website](https://quarto.org/docs/output-formats/html-themes.html)
+
+# Images
+
+Always store images in the images folder.\
+To add an image, the easiest way is to first make sure you are in visual mode, then click insert, then click Figure/Image and chose the file on your computer.
+
+# Publish Website
+
+You will need an access token in order to link and publish your Quarto website on Github.
+
+In Github, click Profile picture → Settings → Developer settings → Personal access tokens → Fine-grained tokens → generate new token
+
+When creating the token,
+
+-   you must click Repository access, then choose "Only selected repositories", and select your website repository
+
+-   click Permissions, then click "Contents: Read and write" and "Metadata: Read-only"
+
+-   click generate token
+
+-   !!Copy the token immediately!! save the token somewhere, once you leave the page, you cannot access the token again.
+
+Go back to RStudio and install the package gitcreds.
+
+Once installed, load the package into your library, and open your R console. Type the following into your console
+
+-   gitcreds::gitcreds_set()
+
+then paste the access token into your console and press enter your github should be linked now
+
+To publish your website, open your terminal and type each line of code below and press enter after each command separately:
+
+-   git init
+
+-   quarto render
+
+-   git remote add origin <https://github.com/USERNAME/REPOSITORY.git>
+
+-   git add -A
+
+-   git commit -m "Update website"
+
+-   git push
+
+If you check your repository on Github, you should see the updated pages, then click the link on the right and you should be able to see your published website
+
+If you want to update your website, then you only need to execute the following commands in your terminal again
+
+-   quarto render
+
+-   git add -A
+
+-   git commit -m "Update website"
+
+-   git push
